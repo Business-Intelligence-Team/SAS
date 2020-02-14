@@ -1,0 +1,6 @@
+proc sql;
+connect to oledb (init_string="Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=BDW;Data Source=BTCBDWDBP001P");
+create table work.Test as select * from connection to oledb (
+Select distinct currentindicator from bdw.msp.loan where currentindicator = 1);
+disconnect from oledb;
+quit;
